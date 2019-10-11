@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+</h:head> 
+
+<h:body> 
+	
+	<ui:composition template="/layouts/commonLayout.xhtml">
+	<ui:define name="title">User Login Page</ui:define>
+	<ui:define name="content">
+		<div align= "center">
+			<h:form>
+
+				<!-- prompt for input to be able to process login -->
+				Enter Username: <h:inputText id="FirstName" value="#{user.username}" title=""/> <br/>
+				Enter Password: <h:inputText id="LastName" value="#{user.password}" title="" /> <br/><br/>
+				<!-- display error message if information or data is entered incorrectly -->
+				<h:messages></h:messages>	
+				 <!-- one button to process the login of a client -->		
+				<!-- have an option to register a new client-->
+				<h:button outcome="registerUser.xhtml" value="Register a new User" />
+				<h:commandButton action="#{credentialController.loginUser(user)}" value="User Login" />
+			</h:form>
+			
+		</div>
+	</ui:define>
+	</ui:composition>
+	
+	
+
+</h:body> 
+</html>

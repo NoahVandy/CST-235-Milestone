@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<!-- pull in the facelets creating data display -->
+	<ui:composition template="/layouts/commonLayout.xhtml">
+	<ui:define name="header"><h1>Register a Client</h1></ui:define>
+	
+	
+	<ui:define name="content">
+		<div align= "center">
+			<h:form>
+			<!-- create entire boxes to be able to collect information to create new user -->
+				Enter Username: <h:inputText id="username" value="#{user.username}" title=""/> <br/>
+				Enter Password: <h:inputText id="password" value="#{user.password}" title="" /> <br/>
+				Enter Email: <h:inputText id="email" value="#{user.email}" title=""/> <br/>
+				Enter Phone Number: <h:inputText id="phoneNumber" value="#{user.phoneNumber}" title="" /> <br/>
+				Enter User Code: <h:inputText id="userCode" value="#{user.userCode}" title="" /> <br/> <br/>
+				<!-- display error message if information or data is entered incorrectly -->
+				<h:messages></h:messages>
+				
+				<!-- button to submit form and process request -->
+				<h:button outcome="loginUser.xhtml" value="Back to Client Login" /> <br/><br/>
+				<h:commandButton action="#{credentialController.registerUser(user)}" value="Complete" />
+			</h:form>
+			
+		</div>
+	</ui:define>
+	
+	
+	</ui:composition>
+
+</body> 
+</html>
