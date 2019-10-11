@@ -11,9 +11,11 @@ import javax.validation.constraints.NotNull;
 @ViewScoped
 public class Unit {
 
+	// unitNumber will act as an ID that 
 	@NotNull
 	private int unitNumber;
 	
+	// unitCode has to have a unitCode to be associated with the user that owns it
 	@NotNull
 	private int unitCode;
 	
@@ -25,7 +27,6 @@ public class Unit {
 	}
 	
 	/**
-	 * 
 	 * @param unitNumber
 	 * @param unitCode
 	 */

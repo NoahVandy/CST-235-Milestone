@@ -33,14 +33,6 @@ public class UnitBusinessService implements UnitBusinessInterface {
     }
 
 	/**
-     * @see UnitBusinessInterface#removeItem()
-     */
-    public boolean removeItem() {
-        // TODO Auto-generated method stub
-			return false;
-    }
-
-	/**
      * @see UnitBusinessInterface#setUsers(List<Unit>)
      */
     public void setUsers(List<Unit> unit) {
@@ -59,26 +51,28 @@ public class UnitBusinessService implements UnitBusinessInterface {
 			if(user.getUserCode() == unit.getUnitCode())
 			{
 				mirror.add(unit);
+				System.out.println("Adding the unit: " + unit.getUnitNumber() + " to " + user.getUsername() + "'s account");
 			}
 		}
 		return mirror;
     	
     	
     }
-
-	/**
-     * @see UnitBusinessInterface#addItem()
+    /**
+     * @see UnitBusinessInterface#addUnit()
      */
-    public boolean addItem() {
-        // TODO Auto-generated method stub
-			return false;
-    }
-
-	/**
-     * @see UnitBusinessInterface#moveItem()
-     */
-    public boolean moveItem() {
-        // TODO Auto-generated method stub
-			return false;
-    }
+	public boolean addUnit(Unit userUnit) {
+		// TODO Auto-generated method stub
+		for(Unit unit : unitList) 
+		{
+			// there cannot be a unit that a user is trying to add that already has the same unitNumber as a unit already in the list
+			if(userUnit.getUnitNumber() == unit.getUnitNumber()) {
+				System.out.println("Already have a unit under that number");
+				return false;
+			}
+		}
+		System.out.println("Adding: " +  userUnit.getUnitNumber() + " to the unitList");
+		unitList.add(userUnit);
+		return true;
+	}
 }

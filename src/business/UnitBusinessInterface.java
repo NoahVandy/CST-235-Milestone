@@ -7,9 +7,7 @@ import beans.User;
 
 public interface UnitBusinessInterface {
 	
-	public boolean addItem();
-	public boolean removeItem();
-	public boolean moveItem();
+	public boolean addUnit(Unit unit);
 	public List<Unit> getUnits(User user);
 	public void setUsers(List<Unit> unit);
 

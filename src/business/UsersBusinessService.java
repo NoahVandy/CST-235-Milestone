@@ -44,6 +44,7 @@ public class UsersBusinessService implements UsersBusinessInterface {
 			{
 				if(login.getUsername().equals(user.getUsername()) && login.getPassword().equals(user.getPassword()))
 				{
+					System.out.println("Username is: " + user.getUsername() + " Password is: " + user.getPassword());
 					return user;
 				}
 			}
@@ -67,6 +68,7 @@ public class UsersBusinessService implements UsersBusinessInterface {
 		{
 			if(register.getUsername().equals(user.getUsername()) || register.getUserCode() == user.getUserCode())
 			{
+				System.out.println("There is already a user with the username: " + register.getUsername());
 				return false;
 			}
 		}
