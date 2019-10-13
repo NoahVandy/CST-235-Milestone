@@ -5,5 +5,6 @@
  <alternatives>
   <class>business.UsersBusinessService</class>
   <class>business.UnitBusinessService</class>
+  <class>business.ItemBusinessService</class>
  </alternatives>
 </beans>

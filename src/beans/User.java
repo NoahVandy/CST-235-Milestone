@@ -50,7 +50,7 @@ public class User {
 	
 
 	/**
-	 * 
+	 * used in making default users in the usersList @see UsersBusinessService
 	 * @param username
 	 * @param password
 	 * @param email

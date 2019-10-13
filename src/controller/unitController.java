@@ -19,11 +19,18 @@ public class unitController {
 	@Inject
 	UnitBusinessInterface service;
 	
+	/**
+	 * Add a new Unit to the unitList
+	 * @param unit
+	 * @return
+	 */
 	public String registerUnit(Unit unit)
 	{
+		// actually add a new unit invoking the business service that is injected, using the unit that the user creates
 		if(service.addUnit(unit) == true)
 		{
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
+			// returning to the log in page after creating a new unit for a user
 			return "loginUser.xhtml";
 		}
 		

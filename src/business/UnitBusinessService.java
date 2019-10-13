@@ -45,15 +45,18 @@ public class UnitBusinessService implements UnitBusinessInterface {
     public List<Unit> getUnits(User user) {
     	
     	List<Unit> mirror = new ArrayList<Unit>();
-        // TODO Auto-generated method stub
+    	// used to loop through each item in the unit list
 		for (Unit unit : unitList)
 		{
+			// used to associate certain units with their users
 			if(user.getUserCode() == unit.getUnitCode())
 			{
+				// adding the associated units to a mirror list
 				mirror.add(unit);
 				System.out.println("Adding the unit: " + unit.getUnitNumber() + " to " + user.getUsername() + "'s account");
 			}
 		}
+		// giving the associated units back 
 		return mirror;
     	
     	
@@ -62,7 +65,7 @@ public class UnitBusinessService implements UnitBusinessInterface {
      * @see UnitBusinessInterface#addUnit()
      */
 	public boolean addUnit(Unit userUnit) {
-		// TODO Auto-generated method stub
+		// used to loop through each unit in the unitList
 		for(Unit unit : unitList) 
 		{
 			// there cannot be a unit that a user is trying to add that already has the same unitNumber as a unit already in the list
@@ -71,6 +74,7 @@ public class UnitBusinessService implements UnitBusinessInterface {
 				return false;
 			}
 		}
+		// creating a new unit and adding it to the list
 		System.out.println("Adding: " +  userUnit.getUnitNumber() + " to the unitList");
 		unitList.add(userUnit);
 		return true;

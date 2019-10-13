@@ -11,22 +11,26 @@ import javax.validation.constraints.NotNull;
 @ViewScoped
 public class Unit {
 
-	// unitNumber will act as an ID that 
 	@NotNull
-	private int unitNumber;
+	private int unitNumber; // unitNumber will act as an ID that will associate specific items to it
 	
-	// unitCode has to have a unitCode to be associated with the user that owns it
+
 	@NotNull
-	private int unitCode;
+	private int unitCode; // unitCode has to have a unitCode to be associated with the user that owns it
 	
-	private List<Item> itemList;
+	private List<Item> itemList; // this is temporary until w get a database to work
 	
+	/**
+	 * default constructor
+	 * does not have user code associated with it because it will auto fill the user code to it
+	 */
 	public Unit() 
 	{
 		this.unitNumber = 0;
 	}
 	
 	/**
+	 * constructor used in making default units in unitList @see UnitBusinessService
 	 * @param unitNumber
 	 * @param unitCode
 	 */

@@ -16,6 +16,7 @@ import javax.enterprise.inject.Alternative;
 @Local(UsersBusinessInterface.class)
 public class UsersBusinessService implements UsersBusinessInterface {
 
+	// used temporarily until the database is standing 
 	List<User> userList = new ArrayList<User>();
     /**
      * Default constructor. 
@@ -39,9 +40,10 @@ public class UsersBusinessService implements UsersBusinessInterface {
      * @see UsersBusinessInterface#authenticateUser(User)
      */
     public User authenticateUser(User login) {
-        // TODO Auto-generated method stub
+    		// loop to be able to run through the existing users 
 			for (User user : userList) 
 			{
+				// if there is a match between existing users and the tried login and password, it will return a user that gets passed into the controller
 				if(login.getUsername().equals(user.getUsername()) && login.getPassword().equals(user.getPassword()))
 				{
 					System.out.println("Username is: " + user.getUsername() + " Password is: " + user.getPassword());
@@ -60,18 +62,21 @@ public class UsersBusinessService implements UsersBusinessInterface {
     }
 
 	/**
+	 * going to make sure that two users can't be created with the same username or usercode
      * @see UsersBusinessInterface#authenticateRegistration(User)
      */
     public boolean authenticateRegistration(User register) {
-        // TODO Auto-generated method stub
+    	// loop to run through existing users
     	for (User user : userList) 
 		{
+    		// if there is a user with the same username or usercode that someone is trying to create, registration will fail
 			if(register.getUsername().equals(user.getUsername()) || register.getUserCode() == user.getUserCode())
 			{
 				System.out.println("There is already a user with the username: " + register.getUsername());
 				return false;
 			}
 		}
+    	// add user that did not match with existing user to the list
     	userList.add(register);
 		return true;
     }

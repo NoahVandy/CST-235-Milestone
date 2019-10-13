@@ -21,24 +21,32 @@ The purpose of this page is to eventually become the main operating page of the 
 		<!-- display information of client to show successful login -->
 			Storage Unit is is: #{unit.unitNumber} <br/>
 			My code is: #{user.userCode}<br/>
-			<h:dataTable value="#{unitController.service.getUnits(user)}" var="u"
+			<h:dataTable value="#{itemController.service.getItems(unit.unitNumber)}" var="u"
 			styleClass="order-table"
 			headerClass="order-table-header"
 			rowClasses="order-table-odd-row, order-table-even-row">
-				<!-- Giving a header in the data table to the order number parameter -->
+				<!-- Giving a header in the data table to the itemID parameter -->
 				<h:column>
-					<f:facet name="header">Unit Number</f:facet>
-					#{u.unitNumber}
+					<f:facet name="header">Item ID</f:facet>
+					#{u.itemId}
 				</h:column>
 				<h:column>
-					<!-- Giving a header in the data table to the product name parameter -->
-					<f:facet name="header">Unit Code</f:facet>
-					#{u.unitCode}
+					<f:facet name="header">Item Name</f:facet>
+					#{u.itemName}
 				</h:column>
 				<h:column>
-					<!-- Giving a button that will lead into displaying all the items inside a storage unit -->
-					<f:facet name="header">Unit's Items</f:facet>
-					<h:button value="Items" outcome="landingItem.xhtml"></h:button>
+					<!-- Giving a header in the data table to the item description parameter -->
+					<f:facet name="header">Item Description</f:facet>
+					#{i.itemDescription}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date Added</f:facet>
+					#{u.dateAdded}
+				</h:column>
+				<h:column>
+					<!-- Giving a button that will lead into removing an item inside a storage unit -->
+					<f:facet name="header">Remove Item</f:facet>
+					<h:button value="Delete" outcome="#"></h:button>
 				</h:column>
 			</h:dataTable>
 			<h:form>
