@@ -22,7 +22,6 @@ public class UsersBusinessService implements UsersBusinessInterface {
      * Default constructor. 
      */
     public UsersBusinessService() {
-        // TODO Auto-generated constructor stub
     	userList.add(new User("NoahVandy", "1234", "test@test.com", "816-555-0000", 1111));
     	userList.add(new User("JasonStine", "1234", "test@test.com", "816-555-0000", 1112));
     	userList.add(new User("MarkReha", "1234", "test@test.com", "816-555-0000", 1114));
@@ -70,9 +69,13 @@ public class UsersBusinessService implements UsersBusinessInterface {
     	for (User user : userList) 
 		{
     		// if there is a user with the same username or usercode that someone is trying to create, registration will fail
-			if(register.getUsername().equals(user.getUsername()) || register.getUserCode() == user.getUserCode())
+			if(register.getUsername().equals(user.getUsername()))
 			{
 				System.out.println("There is already a user with the username: " + register.getUsername());
+				return false;
+			}
+			if(register.getUserCode() == user.getUserCode()) {
+				System.out.println("There is already a user with the same usercode: " + register.getUserCode());
 				return false;
 			}
 		}
