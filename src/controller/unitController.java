@@ -42,9 +42,16 @@ public class unitController {
 	
 	public String navigateToEdit(Unit unit)
 	{
-		// this is going to put the user that is starting to log in as "user" and checks to see if they are already in the system
-		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
-		return "editUnit.xhtml"; 
+		if(unit != null)
+		{
+			// this is going to put the user that is starting to log in as "user" and checks to see if they are already in the system
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
+			System.out.println("navigating to editUnit.xhtml");
+			return "editUnit.xhtml"; 
+		}
+		else {
+			return "errorPage.xhtml";
+		}
 	}
 	
 	public UnitBusinessInterface getService() 
