@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 public class User {
 	
 	// first name cannot be empty or less than 3 or bigger than 15
-	@NotNull(message = "Please enter a first name")
-	@Size(min = 3, max = 15, message = "first name does not meet size requirements") 
+	@NotNull(message = "Please enter a username")
+	@Size(min = 3, max = 15, message = "username does not meet size requirements") 
 	private String username;
 	
 	// last name cannot be empty or less than 3 or bigger than 15
@@ -31,8 +31,7 @@ public class User {
 	//phone number cannot be empty of less then 7 or bigger then 11
 	// this takes into account not entering area code, or adding international code
 	@NotNull(message= "Please enter a phone number")
-	@Size(min = 7, max = 11, message = " Phone number does not meet size requirements")
-	private String phoneNumber;
+	private int phoneNumber;
 	
 	@NotNull(message= "Please enter a user code")
 	private int userCode;
@@ -44,7 +43,7 @@ public class User {
 		this.username = "";
 		this.password = "";
 		this.email = "";
-		this.phoneNumber = "";
+		this.phoneNumber = 0;
 		this.userCode = 0000;
 	}
 	
@@ -57,13 +56,14 @@ public class User {
 	 * @param phoneNumber
 	 * @param userCode
 	 */
-	public User(String username, String password, String email, String phoneNumber, int userCode) {
+	public User(int userCode, String username, String password, String email, int phoneNumber) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.userCode = userCode;
+		
 	}
 
 
@@ -94,12 +94,12 @@ public class User {
 	}
 
 
-	public String getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phoneNumber;
 	}
 
 
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -111,6 +111,13 @@ public class User {
 
 	public void setUserCode(int userCode) {
 		this.userCode = userCode;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", email=" + email + ", phoneNumber="
+				+ phoneNumber + ", userCode=" + userCode + "]";
 	}
 	
 	

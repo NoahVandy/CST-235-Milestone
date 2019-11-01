@@ -15,11 +15,11 @@
 		<div align= "center">
 			<h:form>
 			<!-- create entire boxes to be able to collect information to create new user -->
+				Enter User Code: <h:inputText id="userCode" value="#{user.userCode}" title="" /> <br/>
 				Enter Username: <h:inputText id="username" value="#{user.username}" title=""/> <br/>
 				Enter Password: <h:inputText id="password" value="#{user.password}" title="" /> <br/>
 				Enter Email: <h:inputText id="email" value="#{user.email}" title=""/> <br/>
-				Enter Phone Number: <h:inputText id="phoneNumber" value="#{user.phoneNumber}" title="" /> <br/>
-				Enter User Code: <h:inputText id="userCode" value="#{user.userCode}" title="" /> <br/> <br/>
+				Enter Phone Number: <h:inputText id="phoneNumber" value="#{user.phoneNumber}" title="" /> <br/><br/>
 				<!-- display error message if information or data is entered incorrectly -->
 				<h:messages></h:messages>
 				

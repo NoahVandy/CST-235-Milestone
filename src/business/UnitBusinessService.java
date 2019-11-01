@@ -2,12 +2,14 @@ package business;
 
 import beans.Unit;
 import beans.User;
+import data.DataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
 
 /**
  * Session Bean implementation class UnitBusinessService
@@ -17,6 +19,9 @@ import javax.enterprise.inject.Alternative;
 @Local(UnitBusinessInterface.class)
 public class UnitBusinessService implements UnitBusinessInterface {
 
+	@Inject
+	DataAccessInterface<Unit> dataService;
+	
 	List<Unit> unitList = new ArrayList<Unit>();
 	
     /**
@@ -24,12 +29,6 @@ public class UnitBusinessService implements UnitBusinessInterface {
      */
     public UnitBusinessService() {
         // TODO Auto-generated constructor stub
-    	unitList.add(new Unit(117, 1111));
-    	unitList.add(new Unit(120, 1111));
-    	unitList.add(new Unit(121, 1111));
-    	unitList.add(new Unit(122, 1111));
-    	unitList.add(new Unit(118, 1112));
-    	unitList.add(new Unit(119, 1113));
     }
 
 	/**
@@ -46,7 +45,7 @@ public class UnitBusinessService implements UnitBusinessInterface {
     	
     	List<Unit> mirror = new ArrayList<Unit>();
     	// used to loop through each item in the unit list
-		for (Unit unit : unitList)
+		for (Unit unit : dataService.findAll())
 		{
 			// used to associate certain units with their users
 			if(user.getUserCode() == unit.getUnitCode())
@@ -66,7 +65,7 @@ public class UnitBusinessService implements UnitBusinessInterface {
      */
 	public boolean addUnit(Unit userUnit) {
 		// used to loop through each unit in the unitList
-		for(Unit unit : unitList) 
+		for(Unit unit : dataService.findAll()) 
 		{
 			// there cannot be a unit that a user is trying to add that already has the same unitNumber as a unit already in the list
 			if(userUnit.getUnitNumber() == unit.getUnitNumber()) {
@@ -76,7 +75,7 @@ public class UnitBusinessService implements UnitBusinessInterface {
 		}
 		// creating a new unit and adding it to the list
 		System.out.println("Adding: " +  userUnit.getUnitNumber() + " to the unitList");
-		unitList.add(userUnit);
+		dataService.create(userUnit);
 		return true;
 	}
 }

@@ -21,7 +21,7 @@ The purpose of this page is to eventually become the main operating page of the 
 		<!-- display information of client to show successful login -->
 			Storage Unit is is: #{unit.unitNumber} <br/>
 			My code is: #{user.userCode}<br/>
-			<h:dataTable value="#{itemController.service.getItems(unit.unitNumber)}" var="u"
+			<h:dataTable value="#{itemController.service.items}" var="u"
 			styleClass="order-table"
 			headerClass="order-table-header"
 			rowClasses="order-table-odd-row, order-table-even-row">

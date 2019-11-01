@@ -1,6 +1,5 @@
 package beans;
 
-import java.text.SimpleDateFormat;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -9,9 +8,6 @@ import javax.validation.constraints.NotNull;
 @ManagedBean
 @ViewScoped
 public class Item {
-	
-	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
 	
 	@NotNull
 	private int itemId; // this is for to match an item with a specific storage unit

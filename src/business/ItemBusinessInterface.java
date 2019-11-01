@@ -3,7 +3,6 @@ package business;
 import java.util.List;
 
 import beans.Item;
-import beans.Unit;
 
 public interface ItemBusinessInterface {
 	
@@ -30,7 +29,7 @@ public interface ItemBusinessInterface {
 	 * @param unit
 	 * @return
 	 */
-	public List<Item> getItems(Unit unit);
+	public List<Item> getItems();
 	/**
 	 * used to update an itemList that is associated with a certain unit
 	 * @param list

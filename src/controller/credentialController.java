@@ -22,10 +22,11 @@ public class credentialController {
 	 */
 	public String loginUser(User user)
 	{
+		System.out.println(user.toString());
 		// log in user by invoking the business service 
 		if(service.authenticateUser(user) != null) 
 		{
-			// this is going to put the user that is trting to log in as "user" and checks to see if they are already in the system
+			// this is going to put the user that is starting to log in as "user" and checks to see if they are already in the system
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", service.authenticateUser(user));
 			return "landingUser.xhtml"; 
 		}
