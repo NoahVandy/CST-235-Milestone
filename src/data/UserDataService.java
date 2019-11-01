@@ -10,6 +10,8 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import beans.User;
 
@@ -152,6 +154,10 @@ public class UserDataService implements DataAccessInterface<User> {
 			System.out.println("Connected to the database");
 			if(rs.next()) {
 				loginUser = new User(rs.getInt("USER_CODE"), rs.getString("USERNAME"), rs.getString("PASSWORD"), rs.getString("EMAIL"), rs.getInt("PHONE_NUMBER"));
+				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+				session.setAttribute("usercode", t.getUserCode());
+				session.setAttribute("username", t.getUsername());
+				session.setAttribute("password", t.getPassword());
 			}
 		}
 		catch(SQLException e)

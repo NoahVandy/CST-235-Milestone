@@ -12,12 +12,14 @@ import business.UnitBusinessInterface;
 @ManagedBean 
 @ViewScoped
 public class unitController {
-
+	
 	/**
 	 * Inject the UnitBusinessInterface to gain access to the methods required to display the list from the UnitBusinessService
 	 */
 	@Inject
 	UnitBusinessInterface service;
+	
+	
 	
 	/**
 	 * Add a new Unit to the unitList
@@ -36,6 +38,13 @@ public class unitController {
 		
 		return "errorPage.xhtml";
 		
+	}
+	
+	public String navigateToEdit(Unit unit)
+	{
+		// this is going to put the user that is starting to log in as "user" and checks to see if they are already in the system
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
+		return "editUnit.xhtml"; 
 	}
 	
 	public UnitBusinessInterface getService() 

@@ -40,13 +40,24 @@ The purpose of this page is to eventually become the main operating page of the 
 					<f:facet name="header">Unit's Items</f:facet>
 					<h:button value="Items" outcome="landingItem.xhtml"></h:button>
 				</h:column>
+				<h:column>
+					<h:form action="">
+					<!-- Giving a button that will lead into displaying all the items inside a storage unit -->
+					<f:facet name="header">Edit</f:facet>
+					<h:commandButton action="#{unitController.navigateToEdit(u)}" value="Edit Unit" />
+					</h:form>
+				</h:column>
+				<h:column>
+					<!-- Giving a button that will lead into displaying all the items inside a storage unit -->
+					<f:facet name="header">Delete</f:facet>
+					<h:button value="Items" outcome="deleteUnit.xhtml"></h:button>
+				</h:column>
 			</h:dataTable>
 			<h:form>
 			<br/>
 			<!-- create button to be able to return to login screen "log out" button -->
 			<h:button value="Back to Home" outcome="loginUser.xhtml" />
 			<h:button value="Add a new Unit" outcome="registerUnit.xhtml" />
-			<h:button value="Edit/Delete a Unit" outcome="editDeleteUnit.xhtml" />
 			</h:form>
 			<h:messages></h:messages>
 		</div>
