@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<!-- pull in the facelets creating data display -->
+    <ui:composition template="/layouts/commonLayout.xhtml">
+    <ui:define name="header"><h1>Delete a Unit</h1></ui:define>
+    
+    
+    <ui:define name="content">
+        <div align= "center">
+            <h:form>
+            Unit code is: #{unit.unitCode} <br/>
+            Unit number is: #{unit.unitNumber} <br/>
+            <!-- create entire boxes to be able to collect information to create new user -->
+                Enter Unit Number: <h:inputText id="username" value="#{unit.unitNumber}" title=""/> <br/>
+                Enter your User Code: <h:inputText id="password" value="#{unit.unitCode}" title="" /> <br/>                
+                <!-- button to submit form and process request -->
+                <h:commandButton action="#{unitController.deleteUnit(unit)}" value="Save and Log out" />
+            </h:form>
+            
+        </div>
+    </ui:define>
+    
+    
+    </ui:composition>
+
+</body> 
+</html>

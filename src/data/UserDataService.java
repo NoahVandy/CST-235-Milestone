@@ -125,7 +125,7 @@ public class UserDataService implements DataAccessInterface<User> {
 	/**
      * @see DataAccessInterface#update(T)
      */
-    public boolean update(User t) {
+    public boolean update(User t, User t1) {
         // TODO Auto-generated method stub
 			return false;
     }

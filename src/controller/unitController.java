@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -19,7 +22,7 @@ public class unitController {
 	@Inject
 	UnitBusinessInterface service;
 	
-	
+	private List<Unit> updatedList = new ArrayList<Unit>();
 	
 	/**
 	 * Add a new Unit to the unitList
@@ -40,23 +43,41 @@ public class unitController {
 		
 	}
 	
-	public String navigateToEdit(Unit unit)
+	public String updateUnit(Unit original, Unit updatedUnit)
 	{
-		if(unit != null)
+		
+		if(service.updateUnit(original, updatedUnit) != null)
 		{
-			// this is going to put the user that is starting to log in as "user" and checks to see if they are already in the system
-			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
-			System.out.println("navigating to editUnit.xhtml");
-			return "editUnit.xhtml"; 
+			System.out.println(original.toString());
+			System.out.println(updatedUnit.toString());
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", original);
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", updatedUnit);
+			return "loginUser.xhtml";
 		}
 		else {
 			return "errorPage.xhtml";
 		}
 	}
 	
+	public String deleteUnit(Unit unit)
+    {
+        // actually add a new unit invoking the business service that is injected, using the unit that the user creates
+        if(unit != null)
+        {
+            service.deleteUnit(unit);
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
+            // returning to the log in page after creating a new unit for a user
+            return "loginUser.xhtml";
+        }
+        
+        return "errorPage.xhtml";
+        
+    }
+	
 	public UnitBusinessInterface getService() 
 	{
 		return service;
 	}
+	
 	
 }

@@ -65,6 +65,11 @@ public class Unit {
 	public void setItemList(List<Item> itemList) {
 		this.itemList = itemList;
 	}
+
+	@Override
+	public String toString() {
+		return "Unit [unitNumber=" + unitNumber + ", unitCode=" + unitCode + "]";
+	}
 	
 	
 	

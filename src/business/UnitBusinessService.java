@@ -38,6 +38,20 @@ public class UnitBusinessService implements UnitBusinessInterface {
         // TODO Auto-generated method stub
     }
 
+    /**
+     * remove the unit form the list
+     * @return 
+     */
+    public boolean deleteUnit(Unit unit) {
+        System.out.println("Deleting unit: " + unit.getUnitNumber() + " from the users database");
+        if (dataService.delete(unit) == true) {
+            dataService.delete(unit);
+            return true;
+        }
+        return false;
+    }
+ 
+    
 	/**
      * @see UnitBusinessInterface#getUnits()
      */
@@ -77,5 +91,18 @@ public class UnitBusinessService implements UnitBusinessInterface {
 		System.out.println("Adding: " +  userUnit.getUnitNumber() + " to the unitList");
 		dataService.create(userUnit);
 		return true;
+	}
+
+	public Unit updateUnit(Unit original, Unit updatedUnit) {
+		// TODO Auto-generated method stub
+		if(dataService.update(original, updatedUnit) == true) {
+			System.out.println("Updating " + original.toString() + " to " + updatedUnit.toString());
+			original = updatedUnit;
+		}
+		else {
+			updatedUnit = null;
+		}
+		
+		return updatedUnit;
 	}
 }

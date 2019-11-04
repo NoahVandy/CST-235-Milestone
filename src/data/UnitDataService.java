@@ -31,8 +31,37 @@ public class UnitDataService implements DataAccessInterface <Unit> {
      * @see DataAccessInterface#delete(T)
      */
     public boolean delete(Unit t) {
-        // TODO Auto-generated method stub
-			return false;
+        Connection conn = null;
+        String url = "jdbc:mysql://localhost:3306/cst_235";
+        String username = "root";
+        String password = "root";
+        String sql = String.format("DELETE FROM unit WHERE UNIT_NUMBER = '%d' AND USER_CODE = '%d'", t.getUnitNumber(), t.getUnitCode());
+        try 
+        {
+            conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println(sql);
+        return true;
     }
 
 	/**
@@ -122,9 +151,41 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 	/**
      * @see DataAccessInterface#update(T)
      */
-    public boolean update(Unit t) {
-        // TODO Auto-generated method stub
-			return false;
+    public boolean update(Unit original, Unit updatedUnit) {
+    	Connection conn = null;
+    	Unit foundUnit = new Unit();
+    	String url = "jdbc:mysql://localhost:3306/cst_235";
+		String username = "root";
+		String password = "root";
+		String sql = String.format("UPDATE `unit` SET `UNIT_NUMBER` = '$d' WHERE `unit`.`USER_CODE` = '$d' AND `unit`.`UNIT_NUMBER` = '$d';", updatedUnit.getUnitNumber(), original.getUnitCode(), original.getUnitNumber());
+		System.out.println(sql);
+		try 
+		{
+			conn = DriverManager.getConnection(url, username, password);
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			System.out.println("Connected to the database");
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(conn != null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println(foundUnit.toString());
+    	return true;
     }
 
 	/**
