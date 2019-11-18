@@ -22,7 +22,6 @@ public class credentialController {
 	 */
 	public String loginUser(User user)
 	{
-		System.out.println(user.toString());
 		// log in user by invoking the business service 
 		if(service.authenticateUser(user) != null) 
 		{

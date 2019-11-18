@@ -32,7 +32,7 @@ public class UsersBusinessService implements UsersBusinessInterface {
      */
     public List<User> getUsers() {
         // TODO Auto-generated method stub
-			return null;
+			return dataService.findAll();
     }
 
 	/**
@@ -45,7 +45,6 @@ public class UsersBusinessService implements UsersBusinessInterface {
     	{
     		loginUser = dataService.findBy(login);
     	}
-    	System.out.println(loginUser.toString());
 		return loginUser;
 			
     }

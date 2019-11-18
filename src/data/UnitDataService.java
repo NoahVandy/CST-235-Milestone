@@ -60,7 +60,6 @@ public class UnitDataService implements DataAccessInterface <Unit> {
                 }
             }
         }
-        System.out.println(sql);
         return true;
     }
 
@@ -104,10 +103,6 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 			}
 		}
-		for (Unit u : units) 
-		{
-			System.out.println(u.toString());
-		}
     	return units;
     }
 
@@ -144,7 +139,6 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 			}
 		}
-		System.out.println(sql);
 		return true;
     }
 
@@ -153,7 +147,6 @@ public class UnitDataService implements DataAccessInterface <Unit> {
      */
     public boolean update(Unit original, Unit updatedUnit) {
     	Connection conn = null;
-    	Unit foundUnit = new Unit();
     	String url = "jdbc:mysql://localhost:3306/cst_235";
 		String username = "root";
 		String password = "root";
@@ -184,7 +177,6 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 			}
 		}
-		System.out.println(foundUnit.toString());
     	return true;
     }
 
@@ -228,7 +220,6 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 			}
 		}
-		System.out.println(foundUnit.toString());
     	return foundUnit;
     }
 

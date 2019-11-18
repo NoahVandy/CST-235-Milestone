@@ -105,4 +105,9 @@ public class UnitBusinessService implements UnitBusinessInterface {
 		
 		return updatedUnit;
 	}
+	
+	public List<Unit> getAllUnits()
+	{
+		return dataService.findAll();
+	}
 }

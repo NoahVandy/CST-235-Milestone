@@ -76,10 +76,6 @@ public class ItemDataService implements DataAccessInterface<Item> {
 				}
 			}
 		}
-		for (Item i : items) 
-		{
-			System.out.println(i.toString());
-		}
     	return items;
     }
 

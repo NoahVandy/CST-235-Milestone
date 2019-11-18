@@ -28,5 +28,7 @@ public interface UnitBusinessInterface {
 	public Unit updateUnit(Unit original, Unit updatedUnit);
 	
 	public boolean deleteUnit(Unit unit);
+	
+	public List<Unit> getAllUnits();
 
 }

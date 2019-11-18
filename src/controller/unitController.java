@@ -1,8 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -21,8 +18,6 @@ public class unitController {
 	 */
 	@Inject
 	UnitBusinessInterface service;
-	
-	private List<Unit> updatedList = new ArrayList<Unit>();
 	
 	/**
 	 * Add a new Unit to the unitList
@@ -48,15 +43,29 @@ public class unitController {
 		
 		if(service.updateUnit(original, updatedUnit) != null)
 		{
-			System.out.println(original.toString());
-			System.out.println(updatedUnit.toString());
-			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", original);
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", updatedUnit);
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", original);
 			return "loginUser.xhtml";
 		}
-		else {
+		else 
+		{
 			return "errorPage.xhtml";
 		}
+	}
+	
+	public String loadUnit(Unit unit)
+	{
+		if(unit != null) 
+		{
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("originalUnit", unit);
+			return "editUnit.xhtml";
+		}
+		else 
+		{
+			return "errorPage.xhtml";
+		}
+		
+		
 	}
 	
 	public String deleteUnit(Unit unit)
