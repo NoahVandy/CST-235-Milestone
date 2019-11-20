@@ -20,4 +20,6 @@ public interface UsersBusinessInterface {
 	public boolean authenticateRegistration(User registration);
 	public List<User> getUsers();
 	public void setUsers(List<User> users);
+	public User updateUser(User originalUser, User updatedUser);
+	public User findUserbyId(int id);
 }

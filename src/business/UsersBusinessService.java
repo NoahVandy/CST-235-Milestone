@@ -80,4 +80,23 @@ public class UsersBusinessService implements UsersBusinessInterface {
 		return true;
     }
 
+	@Override
+	public User updateUser(User originalUser, User updatedUser) {
+		if(dataService.update(originalUser, updatedUser) == true)
+		{
+			originalUser = updatedUser;
+		}
+		else 
+		{
+			updatedUser = null;
+		}
+		
+		return updatedUser;
+	}
+
+	public User findUserbyId(int id) 
+	{
+		return dataService.findById(id);
+	}
+
 }
