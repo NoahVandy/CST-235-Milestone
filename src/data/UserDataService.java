@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
+import business.DatabaseException;
 
 /**
  * Session Bean implementation class UserDataService
@@ -62,7 +63,7 @@ public class UserDataService implements DataAccessInterface<User> {
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -74,13 +75,9 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
-		}
-		for (User u : users) 
-		{
-			System.out.println(u.toString());
 		}
     	return users;
     }
@@ -102,7 +99,7 @@ public class UserDataService implements DataAccessInterface<User> {
 		}  
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -114,7 +111,7 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -141,7 +138,7 @@ public class UserDataService implements DataAccessInterface<User> {
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -153,7 +150,7 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -182,7 +179,7 @@ public class UserDataService implements DataAccessInterface<User> {
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -194,7 +191,7 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -225,7 +222,7 @@ public class UserDataService implements DataAccessInterface<User> {
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -237,7 +234,7 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}

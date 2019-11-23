@@ -19,7 +19,7 @@ public class User {
 	private String username;
 	
 	// last name cannot be empty or less than 3 or bigger than 15
-	@NotNull(message = "Please enter a last name")
+	@NotNull(message = "Please enter a password")
 	@Size(min = 3, max = 15, message = "Last name does not meet size requirements")
 	private String password;
 	
