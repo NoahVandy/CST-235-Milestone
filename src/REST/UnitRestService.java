@@ -54,17 +54,17 @@ public class UnitRestService {
 	 * @param unitCode
 	 * @return
 	 */
-	@POST
-	@Path("/update/{unitNumber}/{unitCode}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Unit updateUnit(Unit unit, @PathParam("unitNumber") int unitNumber, @PathParam("unitCode") int unitCode) {
-		Unit newUnit = new Unit();
-		newUnit.setUnitCode(unitCode);
-		newUnit.setUnitNumber(unitNumber);
-		newUnit.setItemList(unit.getItemList());
-		return service.updateUnit(unit, newUnit);
-	}
+//	@POST
+//	@Path("/update/{unitNumber}/{unitCode}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Unit updateUnit(Unit unit, @PathParam("unitNumber") int unitNumber, @PathParam("unitCode") int unitCode) {
+//		Unit newUnit = new Unit();
+//		newUnit.setUnitCode(unitCode);
+//		newUnit.setUnitNumber(unitNumber);
+//		newUnit.setItemList(unit.getItemList());
+//		return service.updateUnit(unit, newUnit);
+//	}
 	
 	@GET
 	@Path("/delete/{unitNumber}/{unitCode}")

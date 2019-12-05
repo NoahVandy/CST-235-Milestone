@@ -27,6 +27,10 @@ The purpose of this page is to eventually become the main operating page of the 
 			rowClasses="order-table-odd-row, order-table-even-row">
 				<!-- Giving a header in the data table to the order number parameter -->
 				<h:column>
+					<f:facet name="header">Unit ID</f:facet>
+					#{u.unitId}
+				</h:column>
+				<h:column>
 					<f:facet name="header">Unit Number</f:facet>
 					#{u.unitNumber}
 				</h:column>
@@ -46,7 +50,7 @@ The purpose of this page is to eventually become the main operating page of the 
 			<!-- create button to be able to return to login screen "log out" button -->
 			<h:button value="Back to Home" outcome="loginUser.xhtml" />
 			<h:button value="Add a new Unit" outcome="registerUnit.xhtml" />
-			<h:button value="Edit Unit" outcome="loadUnit.xhtml"/>
+			<h:button value="Edit Unit" outcome="editUnit.xhtml"/>
 			</h:form>
 			<h:messages></h:messages>
 		</div>

@@ -12,9 +12,11 @@ import javax.validation.constraints.NotNull;
 public class Unit {
 
 	@NotNull
-	private int unitNumber; // unitNumber will act as an ID that will associate specific items to it
+	private int unitId; // id for the database to find a specific unit
 	
-
+	@NotNull
+	private int unitNumber; 
+	
 	@NotNull
 	private int unitCode; // unitCode has to have a unitCode to be associated with the user that owns it
 	
@@ -34,13 +36,13 @@ public class Unit {
 	 * @param unitNumber
 	 * @param unitCode
 	 */
-	public Unit(int unitNumber, int unitCode) {
+	public Unit(int unitId, int unitNumber, int unitCode) {
 		super();
+		this.unitId = unitId;
 		this.unitNumber = unitNumber;
 		this.unitCode = unitCode;
 		this.itemList = new ArrayList<Item>();
 	}
-
 
 	public int getUnitNumber() {
 		return unitNumber;
@@ -68,7 +70,15 @@ public class Unit {
 
 	@Override
 	public String toString() {
-		return "Unit [unitNumber=" + unitNumber + ", unitCode=" + unitCode + "]";
+		return "Unit [unitNumber=" + unitNumber + ", unitCode=" + unitCode + ", unitId=" + unitId + "]";
+	}
+
+	public int getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(int unitId) {
+		this.unitId = unitId;
 	}
 	
 	

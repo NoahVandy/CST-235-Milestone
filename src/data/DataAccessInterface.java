@@ -8,6 +8,6 @@ public interface DataAccessInterface <T>
 	public T findById(int id);
 	public T findBy(T t);
 	public boolean create(T t);
-	public boolean update(T t, T unitNumber);
+	public boolean update(T t);
 	public boolean delete(T t);
 }

@@ -93,17 +93,16 @@ public class UnitBusinessService implements UnitBusinessInterface {
 		return true;
 	}
 
-	public Unit updateUnit(Unit original, Unit updatedUnit) {
+	public Unit updateUnit(Unit unit) {
 		// TODO Auto-generated method stub
-		if(dataService.update(original, updatedUnit) == true) {
-			System.out.println("Updating " + original.toString() + " to " + updatedUnit.toString());
-			original = updatedUnit;
+		if(dataService.update(unit) == true) {
+			System.out.println("Updating " + unit.toString() + " to " + unit.toString());
 		}
 		else {
-			updatedUnit = null;
+			unit = null;
 		}
 		
-		return updatedUnit;
+		return unit;
 	}
 	
 	public List<Unit> getAllUnits()

@@ -1,5 +1,7 @@
 package controller;
 
+
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -7,6 +9,7 @@ import javax.inject.Inject;
 
 import beans.Unit;
 import business.UnitBusinessInterface;
+import data.UnitDataService;
 
 
 @ManagedBean 
@@ -18,6 +21,9 @@ public class unitController {
 	 */
 	@Inject
 	UnitBusinessInterface service;
+	
+	@EJB
+	UnitDataService dataService;
 	
 	/**
 	 * Add a new Unit to the unitList
@@ -38,13 +44,15 @@ public class unitController {
 		
 	}
 	
-	public String updateUnit(Unit original, Unit updatedUnit)
+	public String updateUnit(Unit unit)
 	{
+	
+		System.out.println("================= in updateUnit method, going to update: " + unit.toString());
 		
-		if(service.updateUnit(original, updatedUnit) != null)
+		if(service.updateUnit(unit) != null)
 		{
-			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", updatedUnit);
-			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", original);
+			System.out.println(unit.toString());
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("unit", unit);
 			return "loginUser.xhtml";
 		}
 		else 
@@ -55,13 +63,23 @@ public class unitController {
 	
 	public String loadUnit(Unit unit)
 	{
+		System.out.println("=============================== in loadUnit method");
 		if(unit != null) 
 		{
+			//finding the unit through the information entered
+			unit = dataService.findBy(unit);
+			System.out.println("======================== unit is " + unit.toString());
+			
+			//making the session have the original unit
+			System.out.println("====================== putting the unit as a session");
+			
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("originalUnit", unit);
+			System.out.println("============================== going to editUnit.xhtml page");
 			return "editUnit.xhtml";
 		}
 		else 
 		{
+			System.out.println("============================= going to error page");
 			return "errorPage.xhtml";
 		}
 		

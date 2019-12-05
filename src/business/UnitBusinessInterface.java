@@ -25,7 +25,7 @@ public interface UnitBusinessInterface {
 	 */
 	public void setUsers(List<Unit> unit);
 	
-	public Unit updateUnit(Unit original, Unit updatedUnit);
+	public Unit updateUnit(Unit unit);
 	
 	public boolean deleteUnit(Unit unit);
 	

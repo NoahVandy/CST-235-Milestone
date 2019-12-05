@@ -13,10 +13,10 @@
 	
 	<ui:define name="content">
 		<div align= "center">
-			<h:form name="form" method="post">
+			<h:form>
 			<!-- create entire boxes to be able to collect information to create new user -->
-				Enter Unit Number to be changed: <h:inputText id="unitNumber" value="#{unit.unitNumber}" title=""/> <br/>
-				Enter your User Code: <h:inputText id="unitCode" value="#{unit.unitCode}" title="" /> <br/><br/>
+				Enter Unit Number to be changed: <h:inputText name="unitNumber" value="#{unit.unitNumber}" title=""/> <br/>
+				Enter your User Code: <h:inputText name="unitCode" value="#{unit.unitCode}" title="" /> <br/><br/>
 				<!-- button to submit form and process request -->
 				<h:commandButton action="#{unitController.loadUnit(unit)}" value="Save move forward" />
 			</h:form>

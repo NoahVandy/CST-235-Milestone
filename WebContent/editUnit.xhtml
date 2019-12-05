@@ -10,15 +10,15 @@
 	<ui:composition template="/layouts/commonLayout.xhtml">
 	<ui:define name="header"><h1>Edit a Unit</h1></ui:define>
 	
-	old unit number: #{originalUnit.unitNumber}
 	<ui:define name="content">
 		<div align= "center">
 			<h:form>
 			<!-- create entire boxes to be able to collect information to create new user -->
+				Enter the ID of the unit you would like to update: <h:inputText id="unitId" value="#{unit.unitId}" title=""/> <br/>
 				Enter updated Unit Number to be changed: <h:inputText id="originalUnitNumber" value="#{unit.unitNumber}" title=""/> <br/>
 				Enter your User Code: <h:inputText id="originalUnitCode" value="#{unit.unitCode}" title="" /> <br/><br/>
 				<!-- button to submit form and process request -->
-				<h:commandButton action="#{unitController.updateUnit(originalUnit, unit)}" value="Save and go back" />
+				<h:commandButton action="#{unitController.updateUnit(unit)}" value="Save and go back" />
 			</h:form>
 			
 		</div>

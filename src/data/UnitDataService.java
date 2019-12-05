@@ -80,7 +80,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next())
 			{
-				units.add(new Unit(rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE")));
+				units.add(new Unit(rs.getInt("ID"), rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE")));
 			}
 			rs.close();
 			System.out.println("Connected to the database");
@@ -145,12 +145,12 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 	/**
      * @see DataAccessInterface#update(T)
      */
-    public boolean update(Unit original, Unit updatedUnit) {
+    public boolean update(Unit unit) {
     	Connection conn = null;
     	String url = "jdbc:mysql://localhost:3306/cst_235";
 		String username = "root";
 		String password = "root";
-		String sql = String.format("UPDATE `unit` SET `UNIT_NUMBER` = '$d' WHERE `unit`.`USER_CODE` = '$d' AND `unit`.`UNIT_NUMBER` = '$d';", updatedUnit.getUnitNumber(), original.getUnitCode(), original.getUnitNumber());
+		String sql = String.format("UPDATE `unit` SET `UNIT_NUMBER` = '%d' WHERE `unit`.`ID` = '%d';", unit.getUnitNumber(), unit.getUnitId());
 		System.out.println(sql);
 		try 
 		{
@@ -197,7 +197,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next())
 			{
-				foundUnit = new Unit(rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE"));
+				foundUnit = new Unit(rs.getInt("ID"), rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE"));
 			}
 			rs.close();
 			System.out.println("Connected to the database");
@@ -225,8 +225,43 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 
 	@Override
 	public Unit findBy(Unit t) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+    	Unit foundUnit = new Unit();
+    	String url = "jdbc:mysql://localhost:3306/cst_235";
+		String username = "root";
+		String password = "root";
+		String sql = String.format("SELECT * FROM `unit` WHERE `UNIT_NUMBER` = '%d'", t.getUnitNumber());
+		try 
+		{
+			conn = DriverManager.getConnection(url, username, password);
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next())
+			{
+				foundUnit = new Unit(rs.getInt("ID"), rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE"));
+			}
+			rs.close();
+			System.out.println("Connected to the database");
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(conn != null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+    	return foundUnit;
 	}
 
 }
