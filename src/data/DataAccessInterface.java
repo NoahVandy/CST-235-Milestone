@@ -10,4 +10,5 @@ public interface DataAccessInterface <T>
 	public boolean create(T t);
 	public boolean update(T t);
 	public boolean delete(T t);
+	public boolean updateRest(T t, T t1);
 }

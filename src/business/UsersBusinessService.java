@@ -80,9 +80,8 @@ public class UsersBusinessService implements UsersBusinessInterface {
 		return true;
     }
 
-	@Override
 	public User updateUser(User originalUser, User updatedUser) {
-		if(dataService.update(originalUser) == true)
+		if(dataService.updateRest(originalUser, updatedUser) == true)
 		{
 			originalUser = updatedUser;
 		}

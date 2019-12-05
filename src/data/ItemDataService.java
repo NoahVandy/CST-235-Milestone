@@ -109,4 +109,10 @@ public class ItemDataService implements DataAccessInterface<Item> {
 		return null;
 	}
 
+	@Override
+	public boolean updateRest(Item t, Item t1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

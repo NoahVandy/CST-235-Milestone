@@ -264,4 +264,43 @@ public class UnitDataService implements DataAccessInterface <Unit> {
     	return foundUnit;
 	}
 
+	@Override
+	public boolean updateRest(Unit original, Unit updatedUnit) 
+	{
+    	Connection conn = null;
+    	Unit foundUnit = new Unit();
+    	String url = "jdbc:mysql://localhost:3306/cst_235";
+		String username = "root";
+		String password = "root";
+		String sql = String.format("UPDATE `unit` SET `UNIT_NUMBER` = '%d' WHERE `unit`.`USER_CODE` = '%d' AND `unit`.`UNIT_NUMBER` = '%d';", updatedUnit.getUnitNumber(), original.getUnitCode(), original.getUnitNumber());
+		System.out.println(sql);
+		try 
+		{
+			conn = DriverManager.getConnection(url, username, password);
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			System.out.println("Connected to the database");
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(conn != null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println(foundUnit.toString());
+    	return true;
+    }
+
 }

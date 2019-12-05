@@ -122,12 +122,12 @@ public class UserDataService implements DataAccessInterface<User> {
 	/**
      * @see DataAccessInterface#update(T)
      */
-    public boolean update(User originalUser) {
+    public boolean updateRest(User originalUser, User updatedUser) {
     	Connection conn = null;
     	String url = "jdbc:mysql://localhost:3306/cst_235";
 		String username = "root";
 		String password = "root";
-		String sql = String.format("UPDATE `user` SET `USER_CODE` = '%d', `USERNAME` = '%s', `PASSWORD` = '%s', `EMAIL` = '%s', `PHONE_NUMBER` = '%d' WHERE `USER_CODE` = '%d';", originalUser.getUserCode(), originalUser.getUsername(), originalUser.getPassword(), originalUser.getEmail(), originalUser.getPhoneNumber(), originalUser.getUserCode());
+		String sql = String.format("UPDATE `user` SET `USER_CODE` = '%d', `USERNAME` = '%s', `PASSWORD` = '%s', `EMAIL` = '%s', `PHONE_NUMBER` = '%d' WHERE `USER_CODE` = '%d';", updatedUser.getUserCode(), updatedUser.getUsername(), updatedUser.getPassword(), updatedUser.getEmail(), updatedUser.getPhoneNumber(), originalUser.getUserCode());
 		System.out.println(sql);
 		try 
 		{
@@ -138,7 +138,7 @@ public class UserDataService implements DataAccessInterface<User> {
 		}
 		catch(SQLException e)
 		{
-			throw new DatabaseException(e);
+			e.printStackTrace();
 		}
 		finally
 		{
@@ -150,7 +150,7 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					throw new DatabaseException(e);
+					e.printStackTrace();
 				}
 			}
 		}
@@ -239,6 +239,12 @@ public class UserDataService implements DataAccessInterface<User> {
 			}
 		}
     	return loginUser;
+	}
+
+	@Override
+	public boolean update(User t) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
