@@ -30,5 +30,7 @@ public interface UnitBusinessInterface {
 	public boolean deleteUnit(Unit unit);
 	
 	public List<Unit> getAllUnits();
+	
+	public Unit updateRest(Unit originalUnit, Unit updatedUnit);
 
 }

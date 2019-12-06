@@ -10,8 +10,6 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import beans.User;
 import business.DatabaseException;
@@ -59,7 +57,6 @@ public class UserDataService implements DataAccessInterface<User> {
 				users.add(new User(rs.getInt("USER_CODE"), rs.getString("USERNAME"), rs.getString("PASSWORD"), rs.getString("EMAIL"), rs.getInt("PHONE_NUMBER")));
 			}
 			rs.close();
-			System.out.println("Connected to the database");
 		}
 		catch(SQLException e)
 		{
@@ -115,7 +112,6 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 			}
 		}
-		System.out.println(sql);
 		return true;
     }
 
@@ -128,17 +124,15 @@ public class UserDataService implements DataAccessInterface<User> {
 		String username = "root";
 		String password = "root";
 		String sql = String.format("UPDATE `user` SET `USER_CODE` = '%d', `USERNAME` = '%s', `PASSWORD` = '%s', `EMAIL` = '%s', `PHONE_NUMBER` = '%d' WHERE `USER_CODE` = '%d';", updatedUser.getUserCode(), updatedUser.getUsername(), updatedUser.getPassword(), updatedUser.getEmail(), updatedUser.getPhoneNumber(), originalUser.getUserCode());
-		System.out.println(sql);
 		try 
 		{
 			conn = DriverManager.getConnection(url, username, password);
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-			System.out.println("Connected to the database");
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -150,7 +144,7 @@ public class UserDataService implements DataAccessInterface<User> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -172,7 +166,6 @@ public class UserDataService implements DataAccessInterface<User> {
 			conn = DriverManager.getConnection(url, username, password);
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			System.out.println("Connected to the database");
 			if(rs.next()) {
 				user = new User(rs.getInt("USER_CODE"), rs.getString("USERNAME"), rs.getString("PASSWORD"), rs.getString("EMAIL"), rs.getInt("PHONE_NUMBER"));
 			}
@@ -211,13 +204,8 @@ public class UserDataService implements DataAccessInterface<User> {
 			conn = DriverManager.getConnection(url, username, password);
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			System.out.println("Connected to the database");
 			if(rs.next()) {
 				loginUser = new User(rs.getInt("USER_CODE"), rs.getString("USERNAME"), rs.getString("PASSWORD"), rs.getString("EMAIL"), rs.getInt("PHONE_NUMBER"));
-				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-				session.setAttribute("usercode", t.getUserCode());
-				session.setAttribute("username", t.getUsername());
-				session.setAttribute("password", t.getPassword());
 			}
 		}
 		catch(SQLException e)

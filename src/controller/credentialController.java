@@ -32,13 +32,13 @@ public class credentialController {
 			}
 			else 
 			{
-				return "errorResponse.xhtml";
+				return "errorLogin.xhtml";
 			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return "errorResponse.xhtml";
+			return "errorLogin.xhtml";
 		}
 		
 	}
@@ -50,16 +50,23 @@ public class credentialController {
 	 */
 	public String registerUser(User user)
 	{
-		// the business logic is done in the EJB 
-		if(service.authenticateRegistration(user) == true)
-		{
-			// this is going to make put the user in the xhtml file as "user" and then it will get registered as a  new user
-			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
-			return "landingUser.xhtml"; 
+		try {
+			// the business logic is done in the EJB 
+			if(service.authenticateRegistration(user) == true)
+			{
+				// this is going to make put the user in the xhtml file as "user" and then it will get registered as a  new user
+				FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
+				return "landingUser.xhtml"; 
+			}
+			else 
+			{
+				return "errorResponse.xhtml";
+			}
 		}
-		else 
+		catch(Exception e) 
 		{
-			return "errorResponse.xhtml";
+			e.printStackTrace();
+			return "errorPage.xhtml";
 		}
 	}
 

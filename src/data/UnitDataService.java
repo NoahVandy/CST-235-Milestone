@@ -1,5 +1,6 @@
 package data;
 import beans.Unit;
+import business.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,23 +44,23 @@ public class UnitDataService implements DataAccessInterface <Unit> {
             stmt.execute(sql);
         }
         catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            if(conn != null)
-            {
-                try
-                {
-                    conn.close();
-                }
-                catch(SQLException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
+		{
+			throw new DatabaseException(e);
+		}
+		finally
+		{
+			if(conn != null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					throw new DatabaseException(e);
+				}
+			}
+		}
         return true;
     }
 
@@ -83,11 +84,10 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				units.add(new Unit(rs.getInt("ID"), rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE")));
 			}
 			rs.close();
-			System.out.println("Connected to the database");
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -99,7 +99,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -123,7 +123,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 		}  
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -135,7 +135,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -151,17 +151,15 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 		String username = "root";
 		String password = "root";
 		String sql = String.format("UPDATE `unit` SET `UNIT_NUMBER` = '%d' WHERE `unit`.`ID` = '%d';", unit.getUnitNumber(), unit.getUnitId());
-		System.out.println(sql);
 		try 
 		{
 			conn = DriverManager.getConnection(url, username, password);
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-			System.out.println("Connected to the database");
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -173,7 +171,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -200,11 +198,10 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				foundUnit = new Unit(rs.getInt("ID"), rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE"));
 			}
 			rs.close();
-			System.out.println("Connected to the database");
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -216,7 +213,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -241,11 +238,10 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				foundUnit = new Unit(rs.getInt("ID"), rs.getInt("UNIT_NUMBER"), rs.getInt("USER_CODE"));
 			}
 			rs.close();
-			System.out.println("Connected to the database");
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException(e);
 		}
 		finally
 		{
@@ -257,7 +253,7 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					throw new DatabaseException(e);
 				}
 			}
 		}
@@ -265,42 +261,10 @@ public class UnitDataService implements DataAccessInterface <Unit> {
 	}
 
 	@Override
-	public boolean updateRest(Unit original, Unit updatedUnit) 
-	{
-    	Connection conn = null;
-    	Unit foundUnit = new Unit();
-    	String url = "jdbc:mysql://localhost:3306/cst_235";
-		String username = "root";
-		String password = "root";
-		String sql = String.format("UPDATE `unit` SET `UNIT_NUMBER` = '%d' WHERE `unit`.`USER_CODE` = '%d' AND `unit`.`UNIT_NUMBER` = '%d';", updatedUnit.getUnitNumber(), original.getUnitCode(), original.getUnitNumber());
-		System.out.println(sql);
-		try 
-		{
-			conn = DriverManager.getConnection(url, username, password);
-			Statement stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
-			System.out.println("Connected to the database");
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			if(conn != null)
-			{
-				try
-				{
-					conn.close();
-				}
-				catch(SQLException e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-		System.out.println(foundUnit.toString());
-    	return true;
-    }
+	public boolean updateRest(Unit t, Unit t1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

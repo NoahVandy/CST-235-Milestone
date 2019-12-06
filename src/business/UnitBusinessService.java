@@ -43,7 +43,6 @@ public class UnitBusinessService implements UnitBusinessInterface {
      * @return 
      */
     public boolean deleteUnit(Unit unit) {
-        System.out.println("Deleting unit: " + unit.getUnitNumber() + " from the users database");
         if (dataService.delete(unit) == true) {
             dataService.delete(unit);
             return true;
@@ -66,7 +65,6 @@ public class UnitBusinessService implements UnitBusinessInterface {
 			{
 				// adding the associated units to a mirror list
 				mirror.add(unit);
-				System.out.println("Adding the unit: " + unit.getUnitNumber() + " to " + user.getUsername() + "'s account");
 			}
 		}
 		// giving the associated units back 
@@ -83,12 +81,10 @@ public class UnitBusinessService implements UnitBusinessInterface {
 		{
 			// there cannot be a unit that a user is trying to add that already has the same unitNumber as a unit already in the list
 			if(userUnit.getUnitNumber() == unit.getUnitNumber()) {
-				System.out.println("Already have a unit under that number");
 				return false;
 			}
 		}
 		// creating a new unit and adding it to the list
-		System.out.println("Adding: " +  userUnit.getUnitNumber() + " to the unitList");
 		dataService.create(userUnit);
 		return true;
 	}
@@ -103,6 +99,19 @@ public class UnitBusinessService implements UnitBusinessInterface {
 		}
 		
 		return unit;
+	}
+	
+	public Unit updateRest(Unit originalUnit, Unit updatedUnit) {
+		if(dataService.updateRest(originalUnit, updatedUnit) == true)
+		{
+			originalUnit = updatedUnit;
+		}
+		else 
+		{
+			updatedUnit = null;
+		}
+		
+		return updatedUnit;
 	}
 	
 	public List<Unit> getAllUnits()
